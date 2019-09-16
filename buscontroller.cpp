@@ -59,6 +59,7 @@ void BusController::run(){
             }
             //If someone migrated the data
             if (writeBackData != "") {
+                std::cout << "Es migrado" << std::endl;
                 request.cacheController->requestedData = writeBackData;
                 writeBackData = "";
             }

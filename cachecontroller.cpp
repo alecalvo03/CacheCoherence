@@ -26,7 +26,6 @@ void CacheController::invalidate(CacheAddress add){
     if (tag == add.tag){
         if(cache->cacheBlock[i].state == CacheState::Modified){
             cache->cacheBlock[i].state = CacheState::Invalid;
-            //busController->output = id + " Write-back to address " + std::to_string(getAddress(add));
             busController->writeBack(getAddress(add), cache->cacheBlock[i].data);
         } else {
             cache->cacheBlock[i].state = CacheState::Invalid;
@@ -43,7 +42,8 @@ void CacheController::share(CacheAddress add, std::string cacheid){
             guiout = "Migrating " + std::to_string(add.index) + " to " + cacheid;
         }
         //Migration
-        busController->writeBackData = cache->cacheBlock[i].data;
+        if (cache->cacheBlock[i].state != CacheState::Invalid)
+            busController->writeBackData = cache->cacheBlock[i].data;
     }
 }
 
@@ -81,6 +81,7 @@ std::string CacheController::access(CacheAddress add, std::string data, AccessTy
                 //Read Request
                 size_t dir = (tag << int(log2(BLOCK_SIZE))) + add.index;
                 busController->writeBack(dir,cache->cacheBlock[i].data);
+                requestDone = false;
                 busController->requestRead(add, this);
                 while (!requestDone){
                     //Stall until bus controller processes the request

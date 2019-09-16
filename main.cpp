@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "memory.h"
 #include "processor.h"
-//#include "constants.h"
 #include <thread>
 #include <chrono>
 #include <unistd.h>
@@ -10,7 +9,7 @@
 
 bool CLK;
 
-void init_processors(UpdateGUI *updateGUI){
+void init_processors(UpdateGUI *updateGUI) {
     Memory *mem = new Memory();
 
     BusController busController(mem);

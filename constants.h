@@ -17,7 +17,7 @@ const int BLOCK_SIZE = 8;
 const DistributionType CURRENT_DISTRIBUTION = DistributionType::NORMAL;
 
 //Delays
-const int CLOCK_PERIOD = 500;
+const int CLOCK_PERIOD = 2000;
 const int MEM_DELAY = 3*CLOCK_PERIOD;
 extern bool CLK;
 extern bool MANUAL_CLOCK;

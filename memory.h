@@ -9,7 +9,6 @@
 class Memory{
 private:
     std::string mem[DATA_SIZE];
-    std::mutex mtx;
 
 public:
     Memory();

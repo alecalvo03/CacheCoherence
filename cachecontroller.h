@@ -15,7 +15,7 @@ private:
     BusController* busController;
 
 public:
-    bool requestDone = false;
+    volatile bool requestDone = false;
     std::string requestedData;
     std::string id;
     std::string guiout = "";
