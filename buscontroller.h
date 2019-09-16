@@ -24,11 +24,11 @@ struct Request{
 class BusController {
 private:
     Memory* mem;
-    std::queue<BusRequest> requestQ;
     std::vector<CacheController*> CCSubscribed;
     std::queue<Request> writeRequest;
     std::queue<Request> readRequest;
-
+    std::mutex write_queue_mtx;
+    std::mutex read_queue_mtx;
 public:
     std::string writeBackData;
     std::string output = "";

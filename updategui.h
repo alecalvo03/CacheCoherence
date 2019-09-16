@@ -8,6 +8,7 @@
 #include "buscontroller.h"
 #include "processor.h"
 #include "cachecontroller.h"
+#include <thread>
 #include <iostream>
 
 class UpdateGUI : public QThread{
@@ -25,7 +26,7 @@ public:
                 if(bus != nullptr) emit updateBus(bus->output);
                 if(!CPUs.empty()) emit updateCPUs(CPUs);
                 if(!cacheControllers.empty()) emit updateCC(cacheControllers);
-                QThread::sleep(CLOCK_PERIOD/4);
+                std::this_thread::sleep_for(std::chrono::milliseconds(CLOCK_PERIOD/4));
             }
         }
     }

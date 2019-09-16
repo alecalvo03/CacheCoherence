@@ -46,11 +46,11 @@ void init_processors(UpdateGUI *updateGUI){
         if (!MANUAL_CLOCK) {
             CLK = true;
             cv.notify_all();
-            std::this_thread::sleep_for(std::chrono::seconds(CLOCK_PERIOD/2));
+            std::this_thread::sleep_for(std::chrono::milliseconds(CLOCK_PERIOD/2));
 
             CLK = false;
             cv.notify_all();
-            std::this_thread::sleep_for(std::chrono::seconds(CLOCK_PERIOD/2));
+            std::this_thread::sleep_for(std::chrono::milliseconds(CLOCK_PERIOD/2));
         } else {
             if (CLK != prev_clk){
                 prev_clk = CLK;

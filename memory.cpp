@@ -16,7 +16,7 @@ std::string* Memory::getMemory(){
 std::string Memory::access(size_t dir, std::string data = "", AccessType a = AccessType::READ){
     //Make sure direction is within boundaries
     if (dir < DATA_SIZE){
-        std::this_thread::sleep_for(std::chrono::seconds(MEM_DELAY));
+        std::this_thread::sleep_for(std::chrono::milliseconds(MEM_DELAY));
         //Write operation
         if(a == AccessType::WRITE){
             mem[dir] = data;
